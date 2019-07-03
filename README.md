@@ -17,3 +17,8 @@ Generate strong random passwords
 ```shell
 < /dev/urandom tr -dc A-Za-z0-9 | head -c32
 ```
+
+Generate random MAC address, useful for creating virtual interfaces
+```shell
+hexdump -vn3 -e '/3 "52:54:00"' -e '/1 ":%02x"' -e '"\n"' /dev/urandom
+```
