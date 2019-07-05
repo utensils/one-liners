@@ -1,4 +1,4 @@
-# Linux Shell One Liners
+# Linux Shell One Liners & Functions
 
 This repo is just an ongoing collection of shell one liners that may be useful.  
 
@@ -21,4 +21,14 @@ Generate strong random passwords
 Generate random MAC address, useful for creating virtual interfaces
 ```shell
 hexdump -vn3 -e '/3 "52:54:00"' -e '/1 ":%02x"' -e '"\n"' /dev/urandom
+```
+
+Quickly switch between AWS accounts
+```shell
+aws-profile(){
+    export AWS_PROFILE="$1"
+    export AWS_EB_PROFILE="$1"
+    aws sts get-caller-identity | \
+        jq -r --arg PROFILE "$AWS_PROFILE" '"Using AWS Account: "+ .Account + " (" + $PROFILE + ")"'
+}
 ```
